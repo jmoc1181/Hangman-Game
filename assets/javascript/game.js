@@ -1,55 +1,109 @@
-
-
 //These are the street names for the game
-var words = ['ashland', 'addison', 'clark', 'lincoln', 'california', 'foster', 'roscoe'];
+var randomWordArray = ["ashland", "addison", "clark", "lincoln", "california", "foster", "roscoe"];
+
 
 //Alphabet 
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+/*var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-        't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        't', 'u', 'v', 'w', 'x', 'y', 'z'];*/
+
+   // global variables
+    var blank;
+    // empty array to store guesses
+    var answerArray = [];
+	var lettersGuessed = [];
+    var numGuesses = []; 
+    var countdown; 
 
 
-//This choose word from list 
-var word = words[Math.floor(Math.random() * words.length)];
+    // choose a random word from the array
+
+	var randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
+
+    var spaces = randomWord.length; 
+    console.log(spaces);
 
 
-//Empty array called answerArray and fill it with underscores (_) to match the number of letters in the word.
-var answerArray = [];
-	for (var i = 0; i < word.length; i++) {
-    answerArray[i] = "_";
-  }
+    // fill the answer array with underscores
+    function go()
+    {
 
-//Length of the secret word.
-var remainingLetters = word.length;
+        for (var i = 0; i < randomWord.length; i++)
+        {
+            answerArray[i] = "_";
+        }
 
-//Blanks 
-var blanks = answerArray.join(" ");
-document.getElementById("blanks").innerHTML=blanks;
+        // put them in a string
+        blank = answerArray.join(" ");
+        document.getElementById("answer").innerHTML = blank;
 
+        numGuesses = 15;
+		document.getElementById("guessesLeft").innerHTML = numGuesses;
 
-//when user types letter it looks up to see if its the chosen word 
-
-
-function guessLetter(){
-
-
-}
-
+		document.getElementById('guessed').innerHTML = ' '; 
+ 		
+		spaces = randomWord.length; 
+	    randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
 
 
+    };
 
 
 
-//when user types letter it looks up to see if its the chosen word 
 
 
-//if it is in the word the letter pops up in the hidded word - if not the user loses a life and the letter is checked off the list 
+    // player's typed letter
+   // var userText = document.getElementById("user-text");
 
-//if the user runs out of 5 lives, they lose 
 
-//if user guesses the word with anuy lives left they win 
+    // Next, we give JavaScript a function to execute when onkeyup event fires.
+  	document.onkeyup = function(event)
+    {
 
-//if user gets up to 5 wins they win it all 
+     letter(event.key);
+  	 document.getElementById('guessed').innerHTML +=  event.key; 
+  	
+  	numGuesses--;
+	document.getElementById("guessesLeft").innerHTML = numGuesses;
 
-//press a key to play again and start over 
+
+		if (numGuesses === 0){
+				alert("You Lose. You must NOT be from Chicago!");
+				
+				go(); 
+			}
+		else if (spaces === 0 ) { 
+				alert(randomWord + "  - YOU KNOW YOUR CHICAGO STREETS! ");
+			
+				go(); 
+	 } 
+		
+    };
+
+
+
+    function letter(letter)
+    {
+        // here we get the letter that the user types in the bo
+
+        for (var i = 0; i < randomWord.length; i++)
+        {
+          // now if the random word contains a letter that the user typed
+          if (randomWord[i] === letter)
+          {
+            // assign it to a letter
+            answerArray[i] = letter;
+            console.log(letter);
+            document.getElementById("answer").innerHTML = answerArray.join(" ");
+
+            spaces -= 1;
+			console.log(spaces); 
+          }
+       
+        }
+   
+    }
+
+
+    
 

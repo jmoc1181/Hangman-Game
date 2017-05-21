@@ -10,12 +10,12 @@
 		  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 			<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-			<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Bungee+Hairline" rel="stylesheet">
 		  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 			
 </head>
-<body>
+<body onload="go()" >
 	<div class="container"> 
 						<div class="row">
 									<div class="col-md-12 header">HANGMAN - Chicago Streets</div></div>
@@ -33,21 +33,23 @@
 								<div class="game">
 
 								<!--Section for number of guesses remaining and letters guessed-->
-									<div class="col-md-4"></div>
+									<div class="col-md-4">
+											<div class="leftColumn">	
+												<p>Guessed Letters:  <span id="guessed"></span><br><br></p>
+												<p>Remaining Guesses:  <span id="guessesLeft"></span> </p>
+									
+												</div></div>
 
-								<!--Section for current word and up top how many games you won and how many lives left- below that if you win or lose-->	
-									<div class="col-md-4"><div id="blanks"></div> </div></div>
+								<!--Section for current-->	
+									<div class="col-md-4"><div id="answer"></div>
 
 								<!--hangman logo and street signs when chosen the correct word  -->	
 									<div class="col-md-4"></div>
 
-
-								</div>	
-
+					
 						</div>			
 
-
-
+	</div>
 
 	</div>
 		  	<script type="text/javascript" src="assets/javascript/game.js"></script>	
